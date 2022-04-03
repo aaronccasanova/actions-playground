@@ -2,6 +2,7 @@ name: Artifacts Demo
 on: push
 jobs:
   upload-job:
+    runs-on: ubuntu-latest
     name: Save output
     steps:
       - shell: bash
