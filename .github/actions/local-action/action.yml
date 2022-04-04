@@ -1,7 +1,7 @@
 name: 'Local action test'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
+  who-to-greet: # id of input
     description: 'Who to greet'
     required: true
     default: 'World'
@@ -10,4 +10,4 @@ outputs:
     description: 'The time we greeted you'
 runs:
   using: 'node16'
-  main: './action.js'
+  main: './index.js'
