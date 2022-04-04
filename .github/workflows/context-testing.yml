@@ -1,0 +1,27 @@
+# https://docs.github.com/en/actions/learn-github-actions/contexts#example-printing-context-information-to-the-log
+
+# Warning: When using the whole github context, be mindful that it includes
+# sensitive information such as github.token. GitHub masks secrets when they
+# are printed to the console, but you should be cautious when exporting or
+# printing the context.
+
+name: Context testing
+on: push
+
+jobs:
+  dump_contexts_to_log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'

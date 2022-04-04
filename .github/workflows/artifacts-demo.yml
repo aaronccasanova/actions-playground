@@ -1,0 +1,25 @@
+name: Artifacts Demo
+on: push
+jobs:
+  upload-job:
+    runs-on: ubuntu-latest
+    name: Save output
+    steps:
+      - shell: bash
+        run: |
+          expr 1 + 1 > output.txt
+      - name: Upload output file
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts-demo-output
+          path: output.txt
+  download-job:
+    runs-on: ubuntu-latest
+    needs: upload-job
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts-demo-output
+      - shell: bash
+        run: cat output.txt
