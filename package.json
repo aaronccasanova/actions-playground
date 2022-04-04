@@ -1,0 +1,23 @@
+{
+  "name": "actions-playground",
+  "version": "0.0.0",
+  "description": "## Events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronccasanova/actions-playground.git"
+  },
+  "author": "Aaron Casanova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aaronccasanova/actions-playground/issues"
+  },
+  "homepage": "https://github.com/aaronccasanova/actions-playground#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.1"
+  }
+}
