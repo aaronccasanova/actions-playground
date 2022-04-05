@@ -32,6 +32,8 @@ async function main() {
   const swid = core.getInput('disney-swid')
 
   for (const restaurant of restaurants) {
+    console.log(`Fetching availability for ${restaurant.name}`)
+
     const res = await fetch(
       `${baseURL}/${swid}/dlr/` +
         restaurant.id +
@@ -41,6 +43,14 @@ async function main() {
 
     /** @type {Object} */
     const availability = await res.json()
+
+    console.log(
+      `Availability for ${restaurant.name}: ${JSON.stringify(
+        availability,
+        null,
+        2,
+      )}`,
+    )
 
     if ('offers' in availability) {
       await fetch('https://api.pushover.net/1/messages.json', {
