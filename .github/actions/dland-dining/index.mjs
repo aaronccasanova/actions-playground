@@ -3,10 +3,11 @@ import fetch from 'node-fetch'
 import core from '@actions/core'
 // import github from '@actions/github'
 
-const partySize = 3
-// const date = '2022-04-24'
-const date = '2022-05-31'
-const mealPeriod = 'mealPeriod=80000714'
+const mealPeriods = {
+  breakfast: '80000712',
+  lunch: '80000717',
+  dinner: '80000714',
+}
 
 const baseURL =
   'https://disneyland.disney.go.com/finder/api/v1/explorer-service/dining-availability'
@@ -30,16 +31,17 @@ const restaurants = [
 ]
 
 async function main() {
-  const swid = core.getInput('disney-swid')
-
   for (const restaurant of restaurants) {
-    console.log(`Fetching availability for ${restaurant.name}`)
+    console.log(`Fetching availability for ${restaurant.name}\n`)
 
     const res = await fetch(
-      `${baseURL}/${swid}/dlr/` +
-        restaurant.id +
-        ';entityType=restaurant/table-service/' +
-        `${partySize}/${date}?${mealPeriod}`,
+      `${baseURL}` +
+        `/${core.getInput('disney-swid')}/dlr` +
+        `/${restaurant.id}` +
+        ';entityType=restaurant/table-service' +
+        `/${core.getInput('party-size')}` +
+        `/${core.getInput('date')}` +
+        `?mealPeriod=${mealPeriods[core.getInput('meal-period')]}`,
     )
 
     /** @type {Object} */
@@ -50,7 +52,7 @@ async function main() {
         availability,
         null,
         2,
-      )}`,
+      )}\n`,
     )
 
     if ('offers' in availability) {

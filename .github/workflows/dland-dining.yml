@@ -13,4 +13,7 @@ jobs:
         with:
           pushover-token: ${{ secrets.PUSHOVER_TOKEN }}
           pushover-user: ${{ secrets.PUSHOVER_USER }}
-          disney-swid: ${{ secrets.DISNEY_SWID }}
+          swid: ${{ secrets.SWID }}
+          date: '2022-04-24'
+          meal-period: 'breakfast'
+          party-size: 3

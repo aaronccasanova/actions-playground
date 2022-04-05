@@ -6,9 +6,20 @@ inputs:
   pushover-user:
     type: string
     required: true
-  disney-swid:
+  swid:
     type: string
     required: true
+  date:
+    # 'yyyy-mm-dd'
+    type: string
+    required: true
+  meal-period:
+    # 'breakfast' | 'lunch' | 'dinner'
+    type: string
+    required: true
+  party-size:
+    type: number
+    default: 2
 runs:
   using: 'node16'
   main: './index.mjs'
