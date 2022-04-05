@@ -6,6 +6,9 @@ inputs:
   pushover-user:
     type: string
     required: true
+  disney-swid:
+    type: string
+    required: true
 runs:
   using: 'node16'
   main: './index.mjs'

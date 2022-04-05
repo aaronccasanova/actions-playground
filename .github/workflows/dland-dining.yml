@@ -13,3 +13,4 @@ jobs:
         with:
           pushover-token: ${{ secrets.PUSHOVER_TOKEN }}
           pushover-user: ${{ secrets.PUSHOVER_USER }}
+          disney-swid: ${{ secrets.DISNEY_SWID }}

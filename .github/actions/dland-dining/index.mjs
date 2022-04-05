@@ -3,32 +3,61 @@ import fetch from 'node-fetch'
 import core from '@actions/core'
 // import github from '@actions/github'
 
-async function fetchDining() {
-  const res = await fetch(
-    'https://disneyland.disney.go.com/finder/api/v1/explorer-service/dining-availability/%7B75230ECE-85B6-47C2-8098-BC9B4C0E4327%7D/dlr/19013078;entityType=restaurant/table-service/3/2022-04-24/?mealPeriod=80000714',
-  )
+const partySize = 3
+const date = '2022-04-24'
+const mealPeriod = 'mealPeriod=80000714'
 
-  const data = await res.json()
+const baseURL =
+  'https://disneyland.disney.go.com/finder/api/v1/explorer-service/dining-availability'
 
-  console.log('data:', data)
-}
+const restaurants = [
+  {
+    name: 'Lamplight Lounge',
+    id: '19013078',
+    url: 'https://disneyland.disney.go.com/dining/disney-california-adventure/lamplight-lounge/',
+  },
+  {
+    name: 'Carthay Circle Restaurant',
+    id: '16515009',
+    url: 'https://disneyland.disney.go.com/dining/disney-california-adventure/carthay-circle-restaurant',
+  },
+  {
+    name: `Oga's Cantina`,
+    id: '19268344',
+    url: 'https://disneyland.disney.go.com/dining/disneyland/ogas-cantina',
+  },
+]
 
 async function main() {
-  await fetchDining()
+  const swid = core.getInput('disney-swid')
 
-  await fetch('https://api.pushover.net/1/messages.json', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      token: core.getInput('pushover-token'),
-      user: core.getInput('pushover-user'),
-      priority: 1,
-      title: 'Test title',
-      message: 'Hi',
-    }),
-  })
+  for (const restaurant of restaurants) {
+    const res = await fetch(
+      `${baseURL}/${swid}/dlr/` +
+        restaurant.id +
+        ';entityType=restaurant/table-service/' +
+        `${partySize}/${date}?${mealPeriod}`,
+    )
+
+    /** @type {Object} */
+    const availability = await res.json()
+
+    if ('offers' in availability) {
+      await fetch('https://api.pushover.net/1/messages.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: core.getInput('pushover-token'),
+          user: core.getInput('pushover-user'),
+          priority: 1,
+          title: `Dining available at ${restaurant.name}`,
+          message: restaurant.url,
+        }),
+      })
+    }
+  }
 }
 
 main().catch((error) => {
