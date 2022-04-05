@@ -4,7 +4,8 @@ import core from '@actions/core'
 // import github from '@actions/github'
 
 const partySize = 3
-const date = '2022-04-24'
+// const date = '2022-04-24'
+const date = '2022-05-31'
 const mealPeriod = 'mealPeriod=80000714'
 
 const baseURL =
