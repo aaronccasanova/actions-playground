@@ -1,7 +1,7 @@
 on: push
 
 jobs:
-  fetch-test:
+  local-action-test:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:

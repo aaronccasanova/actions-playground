@@ -18,6 +18,8 @@
   "homepage": "https://github.com/aaronccasanova/actions-playground#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "@actions/github": "^5.0.1"
+    "@actions/github": "^5.0.1",
+    "node-fetch": "^3.2.3",
+    "twilio": "^3.76.0"
   }
 }

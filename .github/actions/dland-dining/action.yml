@@ -1,0 +1,17 @@
+name: 'Check dland dining availability'
+inputs:
+  twilio-account-sid:
+    type: string
+    required: true
+  twilio-auth-token:
+    type: string
+    required: true
+  from-phone-number:
+    type: string
+    required: true
+  to-phone-number:
+    type: string
+    required: true
+runs:
+  using: 'node16'
+  main: './index.mjs'
