@@ -1,7 +1,7 @@
 name: dland-dining
 on:
   schedule:
-    - cron: '*/5 * * * *' # Every 5min
+    - cron: '*/6 * * * *' # Every 6min
 
 jobs:
   check-dining-availability:
