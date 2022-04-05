@@ -1,4 +1,7 @@
-on: push
+name: dland-dining
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Every 5min
 
 jobs:
   check-dining-availability:
@@ -15,5 +18,5 @@ jobs:
           pushover-user: ${{ secrets.PUSHOVER_USER }}
           swid: ${{ secrets.SWID }}
           date: '2022-04-24'
-          meal-period: 'breakfast'
+          meal-period: 'dinner'
           party-size: 3
