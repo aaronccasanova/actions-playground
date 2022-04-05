@@ -1,3 +1,4 @@
+name: Local action testing
 on: push
 
 jobs:
