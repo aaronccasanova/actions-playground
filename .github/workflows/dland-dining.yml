@@ -9,8 +9,7 @@ jobs:
         with:
           node-version: '16'
       - run: npm install
-      - uses:
-        uses: ./.github/actions/dland-dining
+      - uses: ./.github/actions/dland-dining
         with:
           pushover-token: ${{ secrets.PUSHOVER_TOKEN }}
           pushover-user: ${{ secrets.PUSHOVER_USER }}
