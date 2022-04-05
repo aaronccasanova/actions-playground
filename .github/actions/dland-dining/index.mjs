@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 import twilio from 'twilio'
 import fetch from 'node-fetch'
 
