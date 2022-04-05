@@ -1,15 +1,9 @@
 name: 'Check dland dining availability'
 inputs:
-  twilio-account-sid:
+  pushover-token:
     type: string
     required: true
-  twilio-auth-token:
-    type: string
-    required: true
-  from-phone-number:
-    type: string
-    required: true
-  to-phone-number:
+  pushover-user:
     type: string
     required: true
 runs:

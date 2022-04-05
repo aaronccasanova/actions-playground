@@ -12,7 +12,5 @@ jobs:
       - uses:
         uses: ./.github/actions/dland-dining
         with:
-          twilio-account-sid: ${{ secrets.TWILIO_ACCOUNT_SID }}
-          twilio-auth-token: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          from-phone-number: ${{ secrets.FROM_PHONE_NUMBER }}
-          to-phone-number: ${{ secrets.TO_PHONE_NUMBER }}
+          pushover-token: ${{ secrets.PUSHOVER_TOKEN }}
+          pushover-user: ${{ secrets.PUSHOVER_USER }}

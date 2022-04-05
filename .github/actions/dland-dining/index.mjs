@@ -1,6 +1,3 @@
-require('dotenv').config()
-
-import twilio from 'twilio'
 import fetch from 'node-fetch'
 
 import core from '@actions/core'
@@ -17,19 +14,20 @@ async function fetchDining() {
 }
 
 async function main() {
-  const fromPhoneNumber = core.getInput('from-phone-number')
-  const toPhoneNumber = core.getInput('to-phone-number')
-
-  const accountSid = core.getInput('twilio-account-sid')
-  const authToken = core.getInput('twilio-auth-token')
-  const client = twilio(accountSid, authToken)
-
   await fetchDining()
 
-  await client.messages.create({
-    body: `hi`,
-    from: fromPhoneNumber,
-    to: toPhoneNumber,
+  await fetch('https://api.pushover.net/1/messages.json', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      token: core.getInput('pushover-token'),
+      user: core.getInput('pushover-user'),
+      priority: 1,
+      title: 'Test title',
+      message: 'Hi',
+    }),
   })
 }
 
