@@ -36,7 +36,7 @@ async function main() {
 
     const res = await fetch(
       `${baseURL}` +
-        `/${core.getInput('disney-swid')}/dlr` +
+        `/${core.getInput('swid')}/dlr` +
         `/${restaurant.id}` +
         ';entityType=restaurant/table-service' +
         `/${core.getInput('party-size')}` +
