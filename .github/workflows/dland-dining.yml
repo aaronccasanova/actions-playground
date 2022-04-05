@@ -9,8 +9,7 @@ jobs:
         with:
           node-version: '16'
       - run: npm install
-      - uses:
-        uses: ./.github/actions/dland-dining
+      - uses: ./.github/actions/dland-dining
         with:
           twilio-account-sid: ${{ secrets.TWILIO_ACCOUNT_SID }}
           twilio-auth-token: ${{ secrets.TWILIO_AUTH_TOKEN }}
