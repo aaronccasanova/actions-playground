@@ -7,6 +7,8 @@ inputs:
     type: string
     required: true
   swid:
+    # https://www.democraticmedia.org/sites/default/files/COPPA%20Rule%20Comments%20of%20Children%27s%20Privacy%20Advocates.pdf
+    # "From its appearance, the Disney SWID cookie is likely a unique ID number that identifies a particular Web browser"
     type: string
     required: true
   date:
